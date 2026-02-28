@@ -1,0 +1,151 @@
+customer_id,customer_name,customer_type,region,country,registration_date,is_active
+1,Bevilacqua e figli,Online Retailer,Nord Italia,Uganda,2021-04-22,True
+2,Briccialdi s.r.l.,Online Retailer,Germania,Svizzera,2022-05-31,True
+3,"Cavanna, Ceri e Siffredi e figli",Restaurant,Francia,Isole Faroe,2020-04-17,True
+4,"Ramazzotti, Franscini e Vattimo e figli",Health Food Store,Centro Italia,Saint Kitts and Nevis,2022-03-30,True
+5,Palombi-Roncalli s.r.l.,Supermarket,Centro Italia,Territorio dell'arcipelago indiano,2021-04-29,True
+6,Boccherini Group,Restaurant,UK,Angola,2021-01-20,False
+7,"Giammusso, Galuppi e Aldobrandi SPA",Restaurant,Austria,Sant'Elena,2022-07-02,True
+8,Germano SPA,Restaurant,Germania,Uruguay,2022-09-07,False
+9,Bondumier-Tosi e figli,Online Retailer,Sud Italia,Francia,2020-02-18,False
+10,Gabba-Vattimo e figli,Pharmacy,Austria,Saint Pierre and Miquelon,2022-11-05,True
+11,"Serraglio, Golino e Serraglio s.r.l.",Restaurant,Francia,Comoros,2022-06-06,True
+12,Ricciardi Group,Health Food Store,Francia,Jersey,2020-05-26,True
+13,Bernini-Caironi SPA,Pharmacy,Francia,Isola di Man,2021-09-30,True
+14,Grasso e figli,Health Food Store,Centro Italia,Comoros,2021-06-11,True
+15,Cimarosa-Querini e figli,Restaurant,Nord Italia,Francia,2022-04-13,True
+16,Borromini s.r.l.,Supermarket,Germania,Swaziland,2021-12-19,False
+17,Benussi SPA,Restaurant,Germania,Bermuda,2022-05-04,True
+18,Pisano s.r.l.,Supermarket,Centro Italia,Lituania,2021-01-02,True
+19,Biagiotti-Dandolo s.r.l.,Pharmacy,Francia,Afghanistan,2020-11-28,False
+20,Santorio-Lucchesi s.r.l.,Supermarket,Francia,Russia,2021-08-29,True
+21,"Spinelli, Costanzi e Faugno Group",Pharmacy,UK,Cipro,2022-05-13,True
+22,"Veneziano, Bignardi e Mazzini SPA",Online Retailer,Nord Italia,Australia,2020-03-31,True
+23,Tedesco-Turchi e figli,Health Food Store,Sud Italia,Azerbaijan,2022-06-26,True
+24,Fantoni SPA,Supermarket,Nord Italia,Olanda,2022-02-27,True
+25,"Gibilisco, Pininfarina e Casarin e figli",Pharmacy,Austria,Namibia,2020-04-15,True
+26,Bragadin s.r.l.,Online Retailer,Nord Italia,Paraguay,2022-07-12,False
+27,"Tresoldi, Mercadante e Gulotta e figli",Pharmacy,Francia,Pitcairn Islands,2022-06-25,False
+28,Impastato s.r.l.,Pharmacy,Austria,Bulgaria,2021-05-03,False
+29,"Mantegazza, Saragat e Mercadante SPA",Online Retailer,Nord Italia,Algeria,2022-11-09,True
+30,"Zanzi, Calgari e Borghese e figli",Online Retailer,Francia,Malesia,2021-12-12,True
+31,Navone SPA,Restaurant,Sud Italia,Ucraina,2021-02-15,True
+32,Lucarelli-Cuda s.r.l.,Supermarket,Centro Italia,Tailandia,2021-01-14,True
+33,"Marazzi, Trupiano e Alfonsi Group",Pharmacy,Austria,Yemen,2022-04-23,True
+34,Chindamo Group,Health Food Store,Germania,Brasile,2022-10-27,False
+35,"Visconti, Cremonesi e Lanfranchi Group",Pharmacy,Centro Italia,Nuova Zelanda,2020-06-15,False
+36,"Mozart, Fiorucci e Iannotti s.r.l.",Online Retailer,Nord Italia,Eritrea,2020-11-23,False
+37,Randazzo Group,Pharmacy,Germania,Aruba,2020-03-19,True
+38,Ceschi-Iacobucci e figli,Pharmacy,Francia,Sao Tome and Principe,2020-01-06,True
+39,"Renier, Zamengo e Aloisio SPA",Health Food Store,Sud Italia,Bielorussia,2021-11-17,False
+40,Verga SPA,Online Retailer,Sud Italia,Tailandia,2022-12-09,False
+41,"Viola, Comolli e Riccati e figli",Restaurant,Nord Italia,Armenia,2021-07-27,False
+42,Barsanti-Nugnes e figli,Supermarket,Sud Italia,Porto Rico,2021-04-23,True
+43,"Camilleri, Nitto e Zacco s.r.l.",Pharmacy,Nord Italia,Niue,2021-01-22,False
+44,Cutuli e figli,Restaurant,UK,Ucraina,2020-08-28,True
+45,Errani Group,Restaurant,Germania,Georgia del sud e South Sandwich Islands,2021-10-02,False
+46,"Grassi, Interiano e Cuomo SPA",Supermarket,Centro Italia,Islanda,2021-10-01,True
+47,Garibaldi-Filippelli s.r.l.,Restaurant,UK,Guinea-Bissau,2020-03-01,False
+48,Garobbio SPA,Online Retailer,UK,Paraguay,2021-04-19,True
+49,Mondaini-Ligorio SPA,Health Food Store,Sud Italia,Isole Solomon,2020-10-27,True
+50,Tommaseo-Piazzi Group,Pharmacy,Germania,Zimbabwe,2021-03-09,False
+51,Gulotta e figli,Supermarket,Nord Italia,Namibia,2020-02-12,True
+52,Canova s.r.l.,Health Food Store,Sud Italia,Guinea,2021-02-16,True
+53,Tornatore-Carpaccio s.r.l.,Restaurant,Germania,Isole Vergini Statunitensi,2021-05-02,True
+54,Gualandi SPA,Health Food Store,UK,Sant'Elena,2022-06-14,True
+55,Travia e figli,Online Retailer,Nord Italia,Città del Vaticano,2021-11-08,True
+56,Montalcini Group,Online Retailer,Francia,Peru,2021-10-31,True
+57,"Mantegna, Tolentino e Maspero s.r.l.",Restaurant,Francia,Grenada,2020-07-12,True
+58,"Malaparte, Vismara e Cendron e figli",Online Retailer,UK,Giappone,2021-09-17,False
+59,Draghi-Manunta s.r.l.,Online Retailer,Centro Italia,Moldova,2022-10-29,False
+60,Ludovisi-Foà s.r.l.,Restaurant,Centro Italia,Spagna,2020-01-01,False
+61,"Milanesi, Scarpetta e Rossini s.r.l.",Health Food Store,Austria,Polonia,2022-06-19,True
+62,"Sforza, Donarelli e Brenna Group",Supermarket,Sud Italia,Mali,2020-11-27,False
+63,"Monti, Cabrini e Gibilisco Group",Pharmacy,UK,Danimarca,2022-10-28,True
+64,Armellini SPA,Supermarket,Sud Italia,El Salvador,2020-11-05,True
+65,"Bonomo, Santoro e Porzio e figli",Restaurant,Austria,Saint Lucia,2022-01-08,False
+66,Tagliafierro-Piazzi e figli,Health Food Store,Germania,Cameroon,2022-12-17,False
+67,"Ajello, Canetta e Raurica e figli",Pharmacy,Sud Italia,Isola di Pasqua,2022-10-16,False
+68,"Scarpa, Benigni e Volterra e figli",Online Retailer,Sud Italia,Venezuela,2022-12-17,True
+69,Chiesa-Scarpa Group,Health Food Store,Austria,Seychelles,2020-07-07,False
+70,"Tiepolo, Regge e Vespa s.r.l.",Health Food Store,UK,United States Minor Outlying Islands,2021-11-18,False
+71,"Sibilia, Salgari e Guidone e figli",Supermarket,Sud Italia,Togo,2020-09-04,False
+72,Tremonti-Spadafora e figli,Online Retailer,Germania,Finlandia,2022-09-17,True
+73,Lucciano e figli,Online Retailer,Nord Italia,Fiji,2021-11-14,True
+74,Vecoli-Bottigliero e figli,Restaurant,Austria,Canada,2021-06-05,True
+75,Corradi-Gabba SPA,Supermarket,UK,Giamaica,2020-12-25,False
+76,Venier-Schiaparelli s.r.l.,Supermarket,Austria,Bahamas,2021-09-25,False
+77,Pelli-Antonucci s.r.l.,Supermarket,Francia,Liechtenstein,2020-11-17,True
+78,Mancini-Pellico s.r.l.,Online Retailer,UK,Mayotte,2020-01-10,True
+79,"Galuppi, Sraffa e Galilei Group",Supermarket,Germania,Kenya,2022-04-28,True
+80,Pellegrini Group,Pharmacy,Austria,Pitcairn Islands,2022-01-24,False
+81,Deledda-Schicchi e figli,Supermarket,UK,Isole Norfolk,2022-11-21,True
+82,Pertile SPA,Restaurant,Germania,Belize,2022-04-09,True
+83,Chittolini-Scalfaro e figli,Online Retailer,UK,Australia,2022-09-25,True
+84,Monaco-Franscini s.r.l.,Restaurant,Nord Italia,Grenada,2021-02-08,True
+85,Lettiere-Quasimodo Group,Pharmacy,Centro Italia,Tailandia,2021-06-08,True
+86,Antonioni-Vattimo SPA,Online Retailer,Nord Italia,Guinea-Bissau,2020-05-07,True
+87,"Bombieri, Bartoli e Bajamonti e figli",Online Retailer,Centro Italia,Costa Rica,2020-12-14,True
+88,"Corradi, Giorgetti e Ceci s.r.l.",Supermarket,Nord Italia,Pitcairn Islands,2020-02-01,True
+89,"Gaito, Scarpetta e Guarato Group",Supermarket,Sud Italia,Chad,2020-06-26,True
+90,"Carocci, Dallapé e Matteotti SPA",Pharmacy,Germania,Namibia,2022-07-30,True
+91,Panicucci-Petrucci e figli,Health Food Store,Austria,Bielorussia,2020-02-09,False
+92,"Golino, Camanni e Manzoni SPA",Restaurant,Francia,Sudan,2022-07-08,True
+93,Napolitano s.r.l.,Health Food Store,Centro Italia,Peru,2022-05-29,True
+94,Tognazzi Group,Restaurant,UK,American Samoa,2021-07-29,False
+95,Camuccini-Rismondo Group,Restaurant,Francia,Oman,2021-10-14,True
+96,"Correr, Rocca e Durante Group",Online Retailer,Austria,Nigeria,2021-12-15,True
+97,Scarpetta-Roccabonella Group,Health Food Store,Germania,Groenlandia,2022-04-16,True
+98,Liguori s.r.l.,Online Retailer,Sud Italia,El Salvador,2021-01-16,True
+99,"Parini, Morandi e Bacosi s.r.l.",Online Retailer,Sud Italia,Tonga,2021-12-22,True
+100,Squarcione e figli,Supermarket,Germania,Guyana,2021-05-19,True
+101,Lippomano-Leopardi SPA,Restaurant,Sud Italia,Malta,2021-02-05,False
+102,Goldoni s.r.l.,Pharmacy,Germania,Macao,2020-10-23,True
+103,Simeoni s.r.l.,Health Food Store,Germania,Kuwait,2022-05-12,False
+104,Majewski e figli,Supermarket,Centro Italia,Isola di Man,2020-01-27,False
+105,Marsili Group,Restaurant,Sud Italia,Libyan Arab Jamahiriya,2022-12-10,True
+106,"Muratori, Ravaglioli e Vigliotti Group",Pharmacy,Nord Italia,Guyana,2022-05-09,False
+107,Juvara-Marsili Group,Pharmacy,Nord Italia,Repubblica Dominicana,2022-12-27,True
+108,"Ferragamo, Mennea e Casalodi e figli",Restaurant,Francia,Congo,2020-07-06,False
+109,"Sorrentino, Lercari e Trezzini Group",Pharmacy,UK,Bolivia,2020-12-02,True
+110,Gentili-Onisto e figli,Restaurant,UK,Georgia,2020-10-28,True
+111,"Udinese, Celentano e Leonardi SPA",Health Food Store,Francia,Austria,2020-01-22,True
+112,Ceci-Stradivari SPA,Restaurant,Sud Italia,Tuvalu,2022-05-09,True
+113,"Lovato, Seddio e Soderini s.r.l.",Supermarket,Francia,Guernsey,2020-01-20,True
+114,Grimani s.r.l.,Pharmacy,UK,Brasile,2020-10-13,False
+115,Stucchi-Borgia SPA,Supermarket,Austria,Canada,2020-04-11,True
+116,"Marenzio, Bresciani e Grassi SPA",Health Food Store,Nord Italia,Mongolia,2020-08-19,True
+117,"Gelli, Tresoldi e Parpinel s.r.l.",Pharmacy,Francia,Uzbekistan,2021-10-08,False
+118,Respighi-Marino SPA,Health Food Store,Centro Italia,Niger,2021-11-18,True
+119,Franceschi Group,Restaurant,Sud Italia,Peru,2020-06-03,True
+120,Giulietti e figli,Health Food Store,Sud Italia,Principato di Monaco,2020-05-06,False
+121,Acerbi s.r.l.,Pharmacy,Francia,Republicca Kirgiza,2020-04-26,True
+122,"Segni, Maderno e Balbo e figli",Supermarket,Germania,Polinesia Francese,2022-12-06,True
+123,"Sansoni, Bondumier e Giannotti Group",Health Food Store,UK,Spagna,2021-03-15,True
+124,"Ficino, Raurica e Carosone e figli",Online Retailer,UK,Palestina,2022-08-28,True
+125,Coardi-Bongiorno SPA,Supermarket,UK,Chad,2020-08-19,False
+126,"Lussu, Rosmini e Catenazzi s.r.l.",Supermarket,Sud Italia,Reunion,2021-04-22,True
+127,"Pinamonte, Lanfranchi e Tartini s.r.l.",Online Retailer,Sud Italia,Kiribati,2021-04-17,True
+128,"Barsanti, Rienzo e Mimun Group",Restaurant,Germania,Anguilla,2020-05-04,True
+129,Argan Group,Supermarket,Francia,Myanmar,2020-05-21,True
+130,Segrè s.r.l.,Online Retailer,Nord Italia,Venezuela,2020-03-03,True
+131,Roccabonella s.r.l.,Restaurant,Centro Italia,Bermuda,2021-03-08,True
+132,Pizzetti-Montecchi Group,Online Retailer,Francia,Pitcairn Islands,2021-12-31,True
+133,Monicelli s.r.l.,Online Retailer,Nord Italia,Romania,2020-06-11,True
+134,Piccio-Vidoni SPA,Supermarket,Nord Italia,Repubblica del Laos,2022-02-08,True
+135,Grifeo-Missoni SPA,Online Retailer,Nord Italia,Isole Solomon,2020-05-16,True
+136,"Abba, Venier e Scamarcio s.r.l.",Health Food Store,Austria,Austria,2021-09-19,True
+137,"Opizzi, Tarantini e Roth SPA",Online Retailer,Germania,Costa d'Avorio,2020-10-18,True
+138,"Chechi, Lupo e Roncalli s.r.l.",Restaurant,Germania,Isole Vergini Britanniche,2021-02-18,True
+139,"Giradello, Cugia e Mattarella SPA",Online Retailer,Francia,Principato di Monaco,2020-02-14,True
+140,Gasperi SPA,Online Retailer,Austria,Libano,2021-09-25,False
+141,"Cossiga, Tarantini e Maffei Group",Pharmacy,Nord Italia,Giamaica,2020-07-01,True
+142,Gori-Saracino e figli,Health Food Store,Germania,India,2022-01-19,False
+143,"Tomasetti, Cianciolo e Bonanno Group",Health Food Store,UK,Isole Solomon,2020-10-23,True
+144,Tomaselli-Interminei SPA,Supermarket,Francia,Guyana Francese,2021-10-06,True
+145,"Stein, Condoleo e Sabbatini s.r.l.",Restaurant,Francia,Guinea,2021-04-08,True
+146,"Vento, Paolucci e Santoro Group",Supermarket,Germania,Isole di Turks and Caicos,2021-05-31,True
+147,"Giovine, Pasqua e Giannotti s.r.l.",Health Food Store,Nord Italia,Aruba,2020-10-20,False
+148,"Serraglio, Parri e Pavone e figli",Supermarket,Francia,Macedonia del Nord,2021-05-09,True
+149,Tebaldi Group,Restaurant,Nord Italia,Isole di Turks and Caicos,2020-02-27,True
+150,Calgari-Trobbiani s.r.l.,Pharmacy,Centro Italia,American Samoa,2020-06-04,True

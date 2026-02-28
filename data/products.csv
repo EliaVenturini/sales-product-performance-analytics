@@ -1,0 +1,244 @@
+product_id,product_name,brand,category,calories_per_100g,is_organic,unit_price,launch_date
+1,Jben,Jaouda,Flour & Mixes,235.0,True,1.69,2022-09-20
+2,uht jaouda 1L,Jaouda,Snacks & Crackers,58.0,False,3.17,2020-06-21
+3,Tartines craquantes au sarrasin imp,Ekibio,Flour & Mixes,388.0,True,6.57,2020-02-08
+4,Nutella,Ferrero,Biscuits & Sweet,539.0,True,5.92,2023-02-25
+5,Nocciolata bio,Rigoni di Asiago,Bread & Bakery,544.0,True,2.2,2021-03-03
+6,Nutella,Nutella,Pasta & Grains,533.3,True,5.7,2021-01-15
+7,Geröstete Mandel Ohne Zucker,Alpro,Flour & Mixes,15.0,False,3.15,2020-12-12
+8,Alvalle Gazpacho l'original,Alvalle,Biscuits & Sweet,40.0,False,7.56,2020-08-04
+9,Nocciolata,Rigoni Di Asiago,Bread & Bakery,544.0,False,6.73,2023-02-18
+10,Le Lait demi écrémé,Jaouda,Snacks & Crackers,45.0,False,2.66,2020-06-08
+11,Pesto alla Genovese,Barilla,Snacks & Crackers,492.0,True,2.19,2022-11-17
+12,كيفير,Jaouda,Bread & Bakery,53.6,False,7.85,2023-02-24
+13,Pesto Rosso,Barilla,Biscuits & Sweet,329.0,False,7.55,2023-10-17
+14,Nutella,Ferrero,Flour & Mixes,539.0,False,5.52,2022-04-27
+15,Nutella Plant-Based,Ferrero,Pizza & Savory,534.0,True,5.63,2020-05-15
+16,Les tranches Végé - lentilles corail,Fleury Michon,Flour & Mixes,143.0,False,5.82,2022-07-06
+17,Salim,Salim,Flour & Mixes,58.0,True,1.84,2021-10-17
+18,Ketchup star 310 g,Star,Pasta & Grains,108.0,False,8.88,2020-02-19
+19,sauce tomate cuisinée,solis,Pasta & Grains,68.0,True,4.35,2020-02-16
+20,Les Tranches Végé Pois chiches,Fleury Michon,Pizza & Savory,138.0,False,2.72,2020-05-25
+21,LBEN CARTON PASTEURISER,Jaouda,Snacks & Crackers,45.0,False,6.52,2020-12-05
+22,Tartines craquantes quinoa - pois chiche sans gluten,Jardin Bio,Flour & Mixes,378.0,True,6.06,2020-12-27
+23,Protein Cacahuetes🥜 & Chocolat🍫,Nature Valley,Pasta & Grains,487.5,False,2.72,2022-02-24
+24,1848 Chocolat en poudre,Poulain,Pizza & Savory,,False,8.91,2022-07-24
+25,kéfir 500g,Reina,Flour & Mixes,75.0,False,6.63,2020-02-11
+26,raibi jaoda,Jaouda,Bread & Bakery,75.3,False,7.66,2022-05-21
+27,nutella,Ferrero,Snacks & Crackers,539.0,False,3.51,2020-11-04
+28,Vanille au soja,Alpro,Pasta & Grains,66.0,False,3.09,2023-01-17
+29,Chicorée soluble nature,Leroux,Pizza & Savory,,False,8.13,2022-10-06
+30,Lightly sea salted crisps,Tyrrell's,Flour & Mixes,476.0,False,2.57,2022-12-25
+31,Tartines craquantes Sarrasin,Jardin BIO étic,Pasta & Grains,362.0,False,7.08,2022-04-26
+32,Nesquik,Nestlé,Biscuits & Sweet,,False,7.1,2021-10-13
+33,Natur mit Kokosnuss,alpro,Pizza & Savory,54.0,False,4.21,2020-12-08
+34,Almond Drink,Vemondo,Pasta & Grains,14.0,False,2.18,2021-11-28
+35,Pâte à tartiner noisette du Lot et Garonne cacao,Lucien Georgelin,Bread & Bakery,552.0,True,2.64,2022-07-04
+36,POM'POTES Compotes Gourdes Pomme Nature 1x90g,Materne,Pasta & Grains,61.0,False,5.97,2021-03-08
+37,Le Supérieur -25% de Sel - Conservation sans Nitrite,Fleury Michon,Pizza & Savory,115.0,False,5.96,2023-06-11
+38,Nutella,Ferrero,Pizza & Savory,539.0,False,8.77,2023-09-12
+39,Blanc de Poulet  - 25% de Sel*,Fleury Michon,Bread & Bakery,103.0,True,6.61,2020-01-11
+40,Le Choco,Nestlé,Biscuits & Sweet,,False,7.26,2023-03-24
+41,Tomato Ketchup,Heinz,Snacks & Crackers,102.0,True,3.7,2023-06-05
+42,ProActiv Margarine Tartine,ProActiv,Pasta & Grains,314.0,False,1.52,2020-09-05
+43,Basilico 400g eu,Barilla,Flour & Mixes,64.0,False,8.78,2022-12-20
+44,chocolat en poudre,Poulain,Pasta & Grains,,True,8.02,2021-10-18
+45,Tartines craquantes au sarrasin,Ekibio,Snacks & Crackers,385.7,False,2.64,2021-06-12
+46,HEINZ BEANZ In a rich tomato sauce,HEINZ,Pasta & Grains,81.0,True,5.99,2021-03-07
+47,Le cookie Chocolat Noisette,Bjorg,Pizza & Savory,496.0,True,2.34,2020-08-29
+48,GALETTES EXTRA-FINES MAΪS,BJORG,Snacks & Crackers,381.0,False,3.29,2020-11-30
+49,Coco Délicieuse et Tropicale,alpro,Pasta & Grains,20.0,True,2.14,2023-04-01
+50,Maizena Fleur de Maïs Sans Gluten 400g,MAIZENA,Pizza & Savory,355.0,True,8.83,2021-06-06
+51,Lait sans lactose,Jaouda,Biscuits & Sweet,58.0,False,2.46,2020-06-07
+52,Kéfir natural sabor suave,Hacendado,Pizza & Savory,74.0,False,3.49,2020-05-24
+53,Mango ohne Zuckerzusatz,alpro,Biscuits & Sweet,62.0,False,8.72,2021-08-13
+54,Barres de fruits secs & noix Myrtilles,nakd,Biscuits & Sweet,374.3,False,6.84,2020-05-30
+55,El Mordjene Crème De Noisettes Grillées,Cebon,Pizza & Savory,555.0,False,4.78,2021-07-11
+56,Nesquik Cocoa,Nestlé,Biscuits & Sweet,382.0,False,2.41,2023-08-09
+57,Pesto Basilico e Rucula,Barilla,Pasta & Grains,444.0,True,4.03,2021-06-18
+58,Moutarde 10.50 g,Star,Biscuits & Sweet,158.7,False,5.91,2022-07-26
+59,Pâte à tartiner Nutella noisettes et cacao - 750g,Ferrero,Bread & Bakery,539.0,True,6.8,2021-02-14
+60,Queso cremoso,Philadelphia,Bread & Bakery,249.0,False,2.0,2023-06-07
+61,180G LT NOISETTE COTE D OR,Côte d'Or,Bread & Bakery,555.0,False,2.03,2020-03-08
+62,Nature aux Amandes - Végétal soja & amande,Alpro,Pasta & Grains,54.0,False,6.51,2023-02-07
+63,Lait de coco fluide,Bjorg,Pasta & Grains,171.0,False,6.92,2021-12-14
+64,Les Tranches Végé Haricots Blancs,FLEURY MICHON,Biscuits & Sweet,135.0,False,3.32,2022-04-13
+65,Tomato ketchup,Heinz,Pizza & Savory,64.0,False,2.93,2020-07-12
+66,Aubergines cuisinées à la Provençal,Cassegrain,Bread & Bakery,83.0,False,4.15,2023-12-03
+67,Crema de cacahuetes 100%,Hacendado,Pizza & Savory,606.7,False,7.97,2021-08-11
+68,Protein Cocoa Hazelnut Bars,Nakd,Bread & Bakery,421.0,True,1.95,2020-05-02
+69,NAKD Cacahuètes - 140g (4x1p),Nakd.,Flour & Mixes,442.0,False,7.5,2022-05-07
+70,"Maestro Cereale avec du Levain, Millet et Quinoa",Schär,Bread & Bakery,248.0,False,2.94,2021-03-31
+71,Cacao puro desgrasado en polvo,La Chocolatera,Biscuits & Sweet,375.0,False,2.55,2023-07-12
+72,Galettes riz complet Bio,Bjorg,Pasta & Grains,379.0,False,4.97,2022-09-03
+73,Levure Chimique Alsacienne,Alsa,Bread & Bakery,71.0,False,7.55,2022-08-18
+74,Soyamilch,alpro,Biscuits & Sweet,39.0,True,1.88,2023-10-07
+75,Protein Caramel salé Cacahuètes,Nature Valley,Biscuits & Sweet,495.0,True,8.76,2023-08-31
+76,T&C Muesli croustillant avoine amandes sans gluten,Terres et Céréales BIO,Pasta & Grains,447.0,False,4.54,2021-07-15
+77,Grand Arôme moins de sucre,Poulain,Pizza & Savory,,False,7.98,2022-06-15
+78,La pâte à tartiner cacao noisette,Funkie,Bread & Bakery,263.0,False,4.34,2020-10-25
+79,Eat natural Protéines,Eat Natural,Pizza & Savory,497.5,False,8.44,2022-12-30
+80,Chips saveur fromage du Jura,Brets,Pizza & Savory,522.0,False,4.67,2020-04-18
+81,Guacamole,Hacendado,Flour & Mixes,149.0,False,2.66,2020-03-12
+82,Tartines craquantes à la châtaigne,Ekibio,Snacks & Crackers,381.0,False,8.76,2022-10-24
+83,Rich and indulgent Hazelnut,Alpro,Biscuits & Sweet,221.0,True,7.1,2020-12-20
+84,Benco Original,Benco,Bread & Bakery,,True,5.88,2023-04-15
+85,Tartined Craquantes Châtaigne,Jardin bio,Biscuits & Sweet,374.0,False,1.93,2021-03-25
+86,Tomato ketchup,Heinz,Biscuits & Sweet,102.0,True,7.88,2020-05-03
+87,NESQUIK Cacao,Nestlé,Bread & Bakery,,True,6.56,2023-08-21
+88,Sea salt & cider vinegar chips,Tyrrells,Pasta & Grains,503.3,False,2.4,2020-12-27
+89,Protéines Cacahuètes et Chocolat Noir,EAT NATURAL,Biscuits & Sweet,512.5,False,5.84,2023-09-08
+90,Arrabbiata,Barilla,Bread & Bakery,60.0,True,4.64,2020-06-05
+91,lait sans lactose,Jaouda,Biscuits & Sweet,58.2,False,8.5,2021-08-13
+92,Wholesome White Loaf,Schär,Pasta & Grains,232.0,False,3.29,2021-03-07
+93,Pago Ace - Orange - Carotte - Citron,pago,Pizza & Savory,40.0,False,6.53,2021-12-05
+94,Blanc de Poulet,Fleury Michon,Snacks & Crackers,100.0,False,3.87,2022-09-14
+95,Nutella pâte à tartiner aux noisettes et au cacao,Ferrero,Bread & Bakery,539.0,True,4.93,2023-07-19
+96,Rôti de Poulet - 100% filet,Fleury Michon,Biscuits & Sweet,110.0,True,2.05,2021-07-20
+97,Nocciolata,Rigoni di Asiago,Pasta & Grains,544.0,False,2.49,2020-09-09
+98,Bouillon cube Légumes sans sel sans gluten,Jardin Bio,Snacks & Crackers,,True,8.09,2021-07-29
+99,Jambon Simplement Bio - Conservation sans nitrite,Fleury Michon,Snacks & Crackers,118.0,False,2.68,2021-07-05
+100,TOFU NATURE,BJORG,Biscuits & Sweet,157.0,False,6.08,2020-11-21
+101,Pâte à tartiner chocolat Noisette,Jardin Bio,Flour & Mixes,557.0,True,6.5,2022-11-07
+102,Kiri carré 36,Kiri,Biscuits & Sweet,230.0,False,8.48,2021-02-18
+103,Chips sel de mer et poivre noir,Tyrrell’s,Bread & Bakery,469.0,False,3.48,2022-12-26
+104,Les Fourrées  -  Beurre de Cacahuète & Cacao,Funkie,Bread & Bakery,438.0,False,3.54,2023-12-26
+105,Chocolate Negro,Dark Excelente,Biscuits & Sweet,569.0,False,6.87,2022-11-27
+106,Natural Coconut Cream,Kara,Pasta & Grains,35.0,False,5.29,2022-10-03
+107,Filet de poulet 🐔 rôti,Fleury Michon,Snacks & Crackers,112.0,True,2.19,2020-04-20
+108,Grand Arôme 32% de Cacao,Poulain,Pizza & Savory,,False,1.83,2022-08-04
+109,Queso crema suave,Hacendado,Snacks & Crackers,241.0,False,6.27,2022-09-13
+110,Tomato Ketchup,Haugen - gruppen as,Snacks & Crackers,102.0,False,7.05,2020-09-22
+111,Double concentré de tomates,Aicha,Biscuits & Sweet,123.0,False,5.7,2022-04-09
+112,Crème de coco légère,BJORG,Bread & Bakery,174.0,True,8.58,2023-02-06
+113,Poulain,Poulain,Flour & Mixes,,False,5.59,2021-01-15
+114,Tartines Craquantes Sarrasin,Ekibio,Snacks & Crackers,388.0,False,4.72,2020-09-10
+115,Milk Chocolate with Honey and Almond Nougat,Toblerone,Bread & Bakery,528.0,False,4.23,2021-12-19
+116,Tomato Ketchup,Heinz,Bread & Bakery,102.0,False,3.07,2021-08-12
+117,Nesquik,Nestlé,Pasta & Grains,,True,4.15,2021-02-23
+118,MASTRO PANETTIERE VITAL,Schär,Biscuits & Sweet,255.2,False,8.79,2023-12-08
+119,Le Torchon - Cuit à l'Etouffée  - 25% de sel*,Fleury Michon,Flour & Mixes,115.0,False,8.43,2022-09-21
+120,Tortilla Nachips Original,Old El Paso,Pasta & Grains,490.0,False,8.81,2022-12-05
+121,Pastasaus m/Basilikum,Mutti,Pasta & Grains,56.0,False,1.69,2022-05-15
+122,Beurre de cacahuètes crunchy,McKennedy by lidl,Flour & Mixes,651.0,False,7.36,2020-12-07
+123,Pechuga de Pavo Cocida 92%,Hacendado,Pizza & Savory,88.0,False,3.5,2022-11-29
+124,Chèvre piment d'Espelette,Bret's,Flour & Mixes,522.0,True,4.37,2021-05-18
+125,"Chocolat Noir 72%, Collection Pure",Villars,Bread & Bakery,540.0,False,3.17,2023-08-02
+126,Pesto alla Genovese,Barilla,Pizza & Savory,492.0,False,3.79,2023-04-08
+127,Tartines craquantes Sarrasin,Terres et Céréales bio,Pasta & Grains,373.0,False,1.68,2023-04-20
+128,Provencale 400g fra,Barilla,Pasta & Grains,66.0,False,3.96,2020-03-27
+129,Heinz Ketchup,Heinz,Bread & Bakery,,False,4.13,2020-12-21
+130,Tomate frito,Hacendado,Biscuits & Sweet,81.0,False,6.59,2023-06-30
+131,Pesto alla Calabrese 190g,Barilla,Biscuits & Sweet,337.0,False,8.53,2020-02-19
+132,ProActiv Margarine Tartine Sans Huile de Palme 450g,Fruit d'Or ProActiv,Bread & Bakery,314.0,False,2.84,2023-06-04
+133,Heidelbeere aus Soja,alpro,Snacks & Crackers,69.0,True,2.31,2021-05-05
+134,Snack poppé T&H,Too GoodFrance,Pizza & Savory,405.0,False,6.96,2021-09-15
+135,pain des fleurs sarrasin,Le Pain des fleurs,Snacks & Crackers,385.0,False,6.04,2021-02-19
+136,Tomato Ketchup,Heinz,Biscuits & Sweet,100.0,True,4.39,2020-04-12
+137,Les fourrées cacao noisette,Funkie,Biscuits & Sweet,423.0,False,3.41,2020-11-23
+138,"Alpro Sojadrink, Ungesüßt 1L",Alpro,Flour & Mixes,33.0,False,1.51,2023-11-19
+139,Chips saveur Pesto Mozzarella,Brets,Biscuits & Sweet,522.0,False,4.23,2022-05-31
+140,Queso Blanco Pasteurizado Light,Hacendado,Bread & Bakery,130.0,False,6.17,2023-09-23
+141,Organic Coconut Milk,Kara,Flour & Mixes,,True,6.89,2023-01-20
+142,Aiguillettes de Poulet Rôti,Fleury Michon,Snacks & Crackers,118.0,False,6.5,2021-05-03
+143,Pesto alla Genovese,ITALIAMO,Snacks & Crackers,464.0,False,6.72,2020-11-26
+144,Parmigiano Reggiano Revet Fersk Parmesan DOP 60g,OLUF LORENTZEN AS,Biscuits & Sweet,402.0,False,2.94,2022-10-15
+145,ZERO NITRITE - LE SUPERIEUR,Fleury Michon,Flour & Mixes,,False,6.57,2022-02-14
+146,Purée de cacahuètes,Jean Hervé,Pasta & Grains,622.0,False,4.54,2021-09-06
+147,Organic Lightly Salted Wholegrain Low Fat Rice Cakes,kallø,Bread & Bakery,450.0,False,3.65,2023-10-06
+148,Hummus Classic,Hacendado,Pizza & Savory,311.0,False,4.98,2023-11-21
+149,Le Tranché Fin - Dégustation - 25% de sel*,Fleury Michon,Pizza & Savory,115.0,False,5.33,2022-09-25
+150,NAKD PROTEIN - Cacao noisette - 45g (16x1p),Nakd,Flour & Mixes,424.0,False,6.43,2021-12-13
+151,"Fermentiertes Sojaprodukt, Ungesüßt",alpro,Snacks & Crackers,42.0,False,2.2,2020-08-09
+152,Smooth Peanut Butter,Maribel,Pasta & Grains,661.0,False,3.18,2021-02-15
+153,Beurre de cacahuètes Bio,GO NUTS,Pasta & Grains,599.0,False,1.68,2020-08-04
+154,Nutella 400g,Nutella,Pasta & Grains,539.0,False,6.08,2021-01-18
+155,petit déjeuner miel et pépites de chocolat,belvita,Bread & Bakery,481.8,False,4.6,2023-03-03
+156,Muesli Bio Croustillant Amande Vanille,Charles Vignon,Flour & Mixes,458.0,False,6.88,2022-05-22
+157,Strawberry Plant-Based Alternative to Yogurt,Alpro,Pizza & Savory,68.0,False,4.49,2022-04-17
+158,Skyr Alternative Natur,alpro,Pasta & Grains,65.0,True,8.19,2021-02-12
+159,100% cacao puro natural,VALOR,Bread & Bakery,339.0,False,3.14,2023-03-06
+160,Galettes riz chocolat noir,Bjorg,Flour & Mixes,492.9,False,1.88,2022-06-27
+161,Blanc de Poulet -25% de Sel,Fleury Michon,Pasta & Grains,103.0,True,4.92,2021-10-27
+162,Tartines craquantes Multicéréales,JARDIN BIO ETIC,Pizza & Savory,378.0,False,8.62,2023-10-26
+163,Nocciolata Pâte à tartiner Cacao  et Noisettes,RIGONI DI ASIAGO,Pizza & Savory,544.0,False,7.72,2022-06-25
+164,Heidelbeere,Alpro,Biscuits & Sweet,69.0,False,8.22,2021-09-12
+165,Mayonesa sabor tradicional,Kraft,Flour & Mixes,372.0,False,4.87,2021-07-16
+166,Yogurt Bnine BANANA,Jaouda,Pasta & Grains,88.1,False,7.24,2020-12-06
+167,Nesquik,Nestlé,Biscuits & Sweet,386.0,False,6.19,2020-08-02
+168,Tortitas de arroz y legumbres,Hacendado,Snacks & Crackers,366.3,False,2.08,2022-03-02
+169,Nocciolata crunchy,Rigoni di Asiago,Snacks & Crackers,543.0,False,3.54,2022-02-05
+170,Tartines craquantes bio à la châtaigne sans gluten,Ekibio,Snacks & Crackers,384.0,True,2.54,2020-05-21
+171,High Protein Chocolate Flavour Pudding,Milbona,Pasta & Grains,76.0,False,6.7,2023-03-20
+172,Ketchup,Hacendado,Flour & Mixes,115.0,False,1.98,2020-03-14
+173,Spaghetti Senza Glutine,Barilla,Pizza & Savory,358.0,False,5.56,2023-08-30
+174,Barres protéinées aux chocolat et cranberries sans gluten,Nature Valley,Pizza & Savory,472.5,True,3.05,2020-06-19
+175,NAKED Organic Tofu,The Tofoo Co,Pizza & Savory,145.0,False,8.28,2020-08-25
+176,Filet de Saumon Purée de Brocolis,Fleury Michon,Biscuits & Sweet,109.0,True,7.92,2022-09-01
+177,Gazpacho Tradicional Mercadona,Hacendado,Biscuits & Sweet,40.0,False,5.07,2020-09-05
+178,Dijon Senf,Maille,Snacks & Crackers,151.0,False,7.14,2023-05-15
+179,Jambon Le Supérieur -25% de Sel,Fleury Michon,Pizza & Savory,115.0,False,5.16,2022-11-23
+180,NESTLÉ DESSERT 80% Puissant 170g,Nestlé,Snacks & Crackers,611.0,False,5.14,2021-10-17
+181,Masło orzechowe,Sante,Pizza & Savory,616.0,False,6.51,2022-07-15
+182,Tomato Frito,Heinz,Pizza & Savory,73.0,False,7.8,2020-04-08
+183,Gervais fromage à la créme,Gervais,Pasta & Grains,255.0,True,8.29,2021-08-20
+184,BUTTERY,FLORA,Biscuits & Sweet,677.0,True,2.13,2021-08-15
+185,Rôti de Porc - 25% de sel*,Fleury Michon,Pizza & Savory,122.0,False,7.99,2022-07-14
+186,Galettes riz sésame,Bjorg,Pasta & Grains,390.0,True,3.45,2021-12-28
+187,PECHUGUITA DE POLLO ASADA AL HORNO,La Carloteña,Snacks & Crackers,125.0,False,4.91,2022-04-01
+188,Menier Pâtissier Tablette,Nestlé,Snacks & Crackers,521.0,False,3.58,2021-01-25
+189,Nature,Sojade,Pizza & Savory,52.0,False,7.75,2022-05-09
+190,Nocciolata,Rigoni di Asiago,Pizza & Savory,544.0,True,7.11,2023-08-30
+191,Tartines craquantes au sarrasin,Terres et céréales Bio,Bread & Bakery,373.0,False,3.18,2020-01-18
+192,Nachos,Hacendado,Bread & Bakery,481.0,True,7.15,2022-11-22
+193,Pesto Basilico e Pistacchio,Barilla,Pasta & Grains,476.0,False,7.79,2023-01-24
+194,"Alvalle Gazpacho tomate, menthe & basilic 1 L",Alvalle,Biscuits & Sweet,30.0,False,3.29,2020-06-26
+195,High Protein Drink Cacao,Milbona,Pizza & Savory,64.0,True,5.72,2022-11-25
+196,Chips Craquante Sel Brets,Bret's,Pasta & Grains,540.0,False,6.74,2023-10-06
+197,Rôti de Porc - 100 % filet*,Fleury Michon,Snacks & Crackers,152.5,False,6.04,2022-04-14
+198,Chocolate negro 85% cacao,Hacendado,Flour & Mixes,597.0,True,7.33,2023-03-12
+199,"Alpro Sojadrink, Schokoladen-Geschmack, Protein 1L",alpro,Pasta & Grains,69.0,False,2.31,2021-02-18
+200,soya Vanille,alpro,Bread & Bakery,57.0,False,5.81,2023-04-08
+201,Penne Rigate Senza Glutine,Barilla,Pizza & Savory,358.0,False,8.55,2022-09-22
+202,Sriracha Sauce🙂,TABASCO,Pasta & Grains,121.0,True,5.93,2021-06-12
+203,Super Poulain,Poulain,Flour & Mixes,,False,2.26,2020-06-22
+204,Yogur griego natural,HACENDADO,Snacks & Crackers,129.0,True,7.46,2021-03-31
+205,"Alpro Fermentiertes Kokosnussprodukt, Natur, Absolutely 350g",Alpro,Biscuits & Sweet,84.0,True,4.1,2021-11-06
+206,Barilla sauce tomates cuisinees 400g,Barilla,Pizza & Savory,68.0,False,2.02,2020-09-02
+207,Vegan Bouillon powder,Marigold,Flour & Mixes,241.0,False,1.59,2021-12-05
+208,Bebida de Avena,Alitey,Pizza & Savory,47.0,False,2.29,2020-01-06
+209,Mozzarella Pizza-Roma,Hacendado,Snacks & Crackers,283.0,False,6.8,2023-01-26
+210,Caldo casero de pollo,Gallina Blanca,Pizza & Savory,5.0,False,7.0,2023-09-22
+211,Rice crackers sea salt,N.A! Nature Addicts,Flour & Mixes,429.0,False,6.11,2023-01-22
+212,Tortitas de maíz,Hacendado,Biscuits & Sweet,366.7,False,4.98,2021-02-13
+213,Natural con Coco,alpro,Flour & Mixes,54.0,False,3.91,2022-02-16
+214,Complet au sarrasin,Gerblé,Pasta & Grains,224.0,True,3.59,2023-03-29
+215,Amande chocolat,Bjorg,Pizza & Savory,59.0,False,7.12,2020-10-04
+216,Tomato Ketchup,Heinz,Biscuits & Sweet,102.0,False,4.02,2022-02-27
+217,Sauce Arrabiata,Saclà,Pizza & Savory,288.0,False,2.86,2023-11-18
+218,Nesquik Original,Nestlé,Pasta & Grains,,False,7.48,2020-06-14
+219,nakd peanut butter protein bar,Nakd,Snacks & Crackers,443.0,False,8.09,2023-09-14
+220,SOJA NATURE SANS SUCRES,Sojasun,Flour & Mixes,32.0,False,5.66,2022-08-29
+221,fromage perly 64p,Unknown,Biscuits & Sweet,260.0,False,2.14,2021-04-08
+222,"Alpro Mandeldrink Weiß Ungesüßt, Ungeröstet 1 LT",Alpro,Flour & Mixes,13.0,False,5.16,2023-07-31
+223,Cookies sin glúten sin azúcares añadidos,Gullón,Pasta & Grains,444.0,False,6.34,2022-09-19
+224,Allumettes de Jambon,Fleury Michon,Pizza & Savory,113.3,False,7.44,2022-02-27
+225,Galettes aux 4 céréales.,Bjorg,Bread & Bakery,379.0,False,3.16,2022-08-04
+226,Sriracha Sauce Hot Chilli Sauce,Go-Tan,Flour & Mixes,131.0,False,3.79,2020-11-04
+227,Chocolate negro 99% cacao,Hacendado,Biscuits & Sweet,610.0,False,5.04,2020-08-25
+228,Soja cuisine semi-épais bio,Bjorg,Biscuits & Sweet,190.0,False,4.69,2021-08-03
+229,Chips Paysanne,Brets,Flour & Mixes,530.0,False,4.14,2023-03-30
+230,Havarti light,Hacendado,Pizza & Savory,267.0,False,3.8,2020-09-07
+231,Gazpacho l'original,Alvalle,Pasta & Grains,40.0,True,6.9,2022-04-17
+232,GREEK STYLE NATURE,alpro,Snacks & Crackers,65.0,True,7.06,2023-04-24
+233,NESQUIK Poudre Cacaotée boîte 500g,NestléNesquik,Flour & Mixes,,False,2.93,2023-12-03
+234,Napoletana,Barilla,Flour & Mixes,67.0,False,3.57,2022-04-03
+235,Sauce tomate basilic,Barilla,Biscuits & Sweet,64.0,False,8.84,2023-11-27
+236,Total 0% Fat Yogurt,FAGE,Pasta & Grains,54.0,False,3.2,2020-01-01
+237,Dessert végétal Noisette-Amande 4 x 100 g,Sojasun,Pasta & Grains,102.0,False,1.61,2022-07-19
+238,Chips Nature l’Originale Nutriscore B,Brets,Biscuits & Sweet,540.0,False,3.55,2021-05-18
+239,Tortillas sans gluten,Old El Paso,Bread & Bakery,266.0,False,6.72,2022-01-29
+240,Chocolate Nutrition Shake,fairlife nutrition plan,Pasta & Grains,44.1,False,2.27,2020-01-31
+241,Multivitamin,Mivolis,Bread & Bakery,,False,5.02,2020-06-22
+242,Barrette Proteiche al Caramello Salato,Nature Valley,Pizza & Savory,495.0,False,2.88,2023-12-14
+243,Crème cuisson,Jaouda,Bread & Bakery,216.0,False,8.55,2021-07-17
