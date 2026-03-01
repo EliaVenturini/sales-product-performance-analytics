@@ -1,27 +1,19 @@
 -- =============================================================================
 -- analysis_queries.sql
--- Progetto: Sales & Product Performance Analytics - DR Schär Portfolio
--- Autore:   Elia Venturini
--- Scopo:    Query SQL avanzate su database DrScharAnalytics
---           Ho strutturato le analisi in 5 sezioni tematiche per coprire
---           le tecniche più rilevanti: JOIN, CTE, Window Functions,
---           CASE WHEN, Subquery
+-- Progetto: Sales & Product Performance Analytics
+--
+-- Query SQL su database DrScharAnalytics.
+-- Strutturate in 5 sezioni: Revenue, Time Intelligence, Product Performance,
+-- Customer Segmentation (RFM), Advanced Analytics.
 -- =============================================================================
 
 USE DrScharAnalytics;
 
 -- =============================================================================
 -- SEZIONE 1: REVENUE ANALYSIS
--- Voglio capire quanto fattura l'azienda, per prodotto e per periodo.
--- Parto sempre da aggregazioni semplici prima di aumentare la complessità.
 -- =============================================================================
 
--- ----------------------------------------------------------------------------
--- Q1.1 - Fatturato totale e numero ordini per anno
--- Ho usato GROUP BY su YEAR(sale_date) per aggregare per anno senza
--- dover creare una colonna aggiuntiva. È la mia query di partenza
--- per avere un quadro generale del business.
--- ----------------------------------------------------------------------------
+-- Q1.1 - Fatturato totale per anno
 SELECT
     YEAR(s.sale_date)               AS anno,
     COUNT(s.sale_id)                AS numero_ordini,
@@ -33,13 +25,8 @@ GROUP BY YEAR(s.sale_date)
 ORDER BY anno;
 
 
--- ----------------------------------------------------------------------------
 -- Q1.2 - Ranking prodotti per fatturato
--- Ho scelto RANK() invece di ROW_NUMBER() perché voglio che prodotti
--- con lo stesso fatturato condividano lo stesso rango (es: 1,2,2,4).
--- ROW_NUMBER() sarebbe sempre univoco ma meno "onesto" in caso di parità.
--- DENSE_RANK() avrebbe fatto 1,2,2,3 — ho preferito RANK() per chiarezza.
--- ----------------------------------------------------------------------------
+-- RANK() assegna lo stesso rango a prodotti con fatturato uguale (1,2,2,4).
 SELECT
     p.product_name,
     p.category,
@@ -55,13 +42,9 @@ GROUP BY p.product_name, p.category, p.brand
 ORDER BY rank_fatturato;
 
 
--- ----------------------------------------------------------------------------
--- Q1.3 - Top 10 prodotti con percentuale sul fatturato totale
--- Il trucco che uso qui è SUM() OVER () senza PARTITION BY: questo mi
--- restituisce il totale generale su tutte le righe, che uso come
--- denominatore per calcolare la percentuale in una sola passata,
--- senza dover scrivere una subquery separata.
--- ----------------------------------------------------------------------------
+-- Q1.3 - Top 10 prodotti con percentuale sul totale
+-- SUM() OVER () senza PARTITION BY restituisce il totale generale,
+-- usato come denominatore per la percentuale senza subquery separata.
 SELECT TOP 10
     p.product_name,
     p.category,
@@ -78,20 +61,12 @@ ORDER BY fatturato_prodotto DESC;
 
 -- =============================================================================
 -- SEZIONE 2: TIME INTELLIGENCE
--- Voglio analizzare l'andamento delle vendite nel tempo.
--- Ho costruito una tabella Calendar appositamente per rendere queste
--- analisi più semplici ed efficienti.
 -- =============================================================================
 
--- ----------------------------------------------------------------------------
 -- Q2.1 - Fatturato mensile con confronto mese precedente
--- Uso LAG(colonna, 1) per accedere al valore del mese precedente
--- direttamente nella stessa query, senza self-join.
--- Ho usato NULLIF al denominatore per evitare divisioni per zero
--- nel caso in cui il mese precedente non abbia dati.
--- ----------------------------------------------------------------------------
+-- LAG() accede al valore del mese precedente senza self-join.
+-- NULLIF al denominatore evita la divisione per zero.
 WITH monthly_revenue AS (
-    -- Preparo i dati mensili in una CTE per tenere la query finale pulita
     SELECT
         c.year                          AS anno,
         c.month                         AS mese,
@@ -118,13 +93,10 @@ FROM monthly_revenue
 ORDER BY anno, mese;
 
 
--- ----------------------------------------------------------------------------
--- Q2.2 - Fatturato cumulativo (running total) per mese
--- Ho usato SUM() OVER con ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
--- per costruire una somma progressiva. Il PARTITION BY anno fa sì che
--- il contatore riparta da zero ogni anno, che è quello che voglio
--- per monitorare l'avanzamento verso l'obiettivo annuale.
--- ----------------------------------------------------------------------------
+-- Q2.2 - Fatturato cumulativo per mese
+-- PARTITION BY anno fa ripartire il totale da zero ogni anno.
+-- ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW definisce
+-- la finestra dalla prima riga fino a quella corrente.
 WITH monthly_revenue AS (
     SELECT
         c.year                          AS anno,
@@ -149,13 +121,9 @@ FROM monthly_revenue
 ORDER BY anno, mese;
 
 
--- ----------------------------------------------------------------------------
--- Q2.3 - Confronto Year-over-Year per trimestre
--- Invece di usare il PIVOT di SQL Server (che trovo meno leggibile),
--- ho preferito un "pivot manuale" con CASE WHEN: estraggo il valore
--- solo per l'anno che mi interessa e sommo tutto il resto a zero.
--- Questo approccio è più portabile e più facile da modificare.
--- ----------------------------------------------------------------------------
+-- Q2.3 - Confronto anno su anno per trimestre
+-- Pivot manuale con CASE WHEN: estrae il valore per anno specifico,
+-- somma zero per gli altri, poi GROUP BY trimestre collassa tutto.
 WITH quarterly_revenue AS (
     SELECT
         c.year                          AS anno,
@@ -184,17 +152,10 @@ ORDER BY trimestre;
 
 -- =============================================================================
 -- SEZIONE 3: PRODUCT PERFORMANCE
--- Voglio analizzare le performance nel dettaglio per prodotto e categoria,
--- inclusi i prodotti che non stanno vendendo — spesso i più informativi.
 -- =============================================================================
 
--- ----------------------------------------------------------------------------
--- Q3.1 - Ranking interno per categoria
--- Ho aggiunto PARTITION BY category alla window function per ottenere
--- un ranking separato per ogni categoria. Senza PARTITION BY avrei
--- un ranking globale, che non mi dice nulla sulla posizione relativa
--- di un prodotto nel suo segmento.
--- ----------------------------------------------------------------------------
+-- Q3.1 - Ranking per categoria
+-- PARTITION BY category genera un ranking separato per ogni categoria.
 SELECT
     p.category,
     p.product_name,
@@ -212,13 +173,9 @@ GROUP BY p.category, p.product_name, p.brand
 ORDER BY p.category, rank_in_categoria;
 
 
--- ----------------------------------------------------------------------------
--- Q3.2 - Prodotti organici vs convenzionali
--- Ho usato LEFT JOIN invece di INNER JOIN per includere anche i prodotti
--- senza vendite nel conteggio. Questo mi dà un quadro più onesto
--- del catalogo. Il CASE WHEN trasforma il flag BIT (0/1) in
--- un'etichetta leggibile nel risultato.
--- ----------------------------------------------------------------------------
+-- Q3.2 - Organico vs convenzionale
+-- LEFT JOIN per includere anche i prodotti senza vendite nel conteggio.
+-- CASE WHEN converte il flag is_organic (0/1) in testo leggibile.
 SELECT
     CASE WHEN p.is_organic = 1 THEN 'Organico' ELSE 'Convenzionale' END
                                     AS tipo_prodotto,
@@ -234,14 +191,8 @@ GROUP BY p.is_organic
 ORDER BY fatturato_totale DESC;
 
 
--- ----------------------------------------------------------------------------
 -- Q3.3 - Prodotti senza vendite
--- Ho usato il pattern LEFT JOIN + WHERE IS NULL invece di NOT IN
--- con una subquery, perché su dataset grandi è più efficiente:
--- SQL Server può usare un index seek sul JOIN invece di scansionare
--- tutta la subquery per ogni riga. I prodotti senza vendite sono
--- segnali di possibili problemi di catalogo o distribuzione.
--- ----------------------------------------------------------------------------
+-- LEFT JOIN + WHERE IS NULL per trovare prodotti mai venduti.
 SELECT
     p.product_id,
     p.product_name,
@@ -256,21 +207,13 @@ ORDER BY p.category, p.product_name;
 
 
 -- =============================================================================
--- SEZIONE 4: CUSTOMER SEGMENTATION - RFM ANALYSIS
--- Ho implementato l'analisi RFM (Recency, Frequency, Monetary) per
--- segmentare i clienti in base al loro comportamento d'acquisto.
--- È uno dei framework più usati nel retail e nel B2B food.
+-- SEZIONE 4: CUSTOMER SEGMENTATION - RFM
 -- =============================================================================
 
--- ----------------------------------------------------------------------------
--- Q4.1 - Segmentazione RFM completa per cliente
--- Ho strutturato la query con due CTE annidate:
--- - rfm_base: calcola le metriche grezze (giorni, conteggio, somma)
--- - rfm_scores: trasforma le metriche in punteggi 1-4 con NTILE(4)
--- NTILE(4) divide i clienti in 4 quartili uguali — è più robusto
--- di soglie fisse perché si adatta automaticamente alla distribuzione.
--- Per Recency ho ordinato ASC perché meno giorni = cliente più recente = meglio.
--- ----------------------------------------------------------------------------
+-- Q4.1 - Segmentazione RFM per cliente
+-- Due CTE: la prima calcola le metriche grezze, la seconda assegna
+-- i punteggi con NTILE(4) che divide i clienti in 4 gruppi uguali.
+-- Recency è ordinata ASC perché meno giorni = cliente più recente = meglio.
 WITH rfm_base AS (
     SELECT
         c.customer_id,
@@ -293,8 +236,6 @@ rfm_scores AS (
         recency_giorni,
         frequency,
         monetary,
-        -- Per Recency ordino ASC: chi ha comprato più di recente
-        -- (giorni bassi) ottiene il punteggio più alto (4)
         NTILE(4) OVER (ORDER BY recency_giorni ASC)     AS r_score,
         NTILE(4) OVER (ORDER BY frequency DESC)         AS f_score,
         NTILE(4) OVER (ORDER BY monetary DESC)          AS m_score
@@ -312,8 +253,6 @@ SELECT
     f_score,
     m_score,
     (r_score + f_score + m_score)   AS rfm_score_totale,
-    -- Converto il punteggio numerico in segmenti di business
-    -- con soglie definite manualmente in base alla scala 3-12
     CASE
         WHEN (r_score + f_score + m_score) >= 10 THEN 'Champions'
         WHEN (r_score + f_score + m_score) >= 8  THEN 'Loyal Customers'
@@ -325,13 +264,7 @@ FROM rfm_scores
 ORDER BY rfm_score_totale DESC;
 
 
--- ----------------------------------------------------------------------------
--- Q4.2 - Distribuzione clienti per segmento RFM
--- Riuso la stessa logica RFM della query precedente in una CTE
--- e ci aggrego sopra per vedere quanti clienti ci sono in ogni
--- segmento e quanto fatturano in media. Questo è il dato che
--- porterei in una riunione commerciale.
--- ----------------------------------------------------------------------------
+-- Q4.2 - Distribuzione clienti per segmento
 WITH rfm_base AS (
     SELECT
         c.customer_id,
@@ -378,19 +311,11 @@ ORDER BY fatturato_totale DESC;
 
 -- =============================================================================
 -- SEZIONE 5: ADVANCED ANALYTICS
--- Query più complesse che combinano più tecniche insieme.
--- Queste sono quelle che mi piace di più mostrare nel portfolio
--- perché dimostrano che so ragionare su problemi analitici reali.
 -- =============================================================================
 
--- ----------------------------------------------------------------------------
--- Q5.1 - Top 3 prodotti per fatturato in ogni categoria
--- Questo è il classico problema "Top N per gruppo" che si risolve
--- con ROW_NUMBER() OVER (PARTITION BY ...).
--- Ho scelto ROW_NUMBER() invece di RANK() perché voglio esattamente
--- 3 righe per categoria — con RANK() potrei averne di più in caso
--- di parità, il che complicherebbe la lettura del risultato.
--- ----------------------------------------------------------------------------
+-- Q5.1 - Top 3 prodotti per categoria
+-- ROW_NUMBER() garantisce esattamente 3 righe per categoria.
+-- Con RANK() in caso di parità potrebbero essere di più.
 WITH product_revenue AS (
     SELECT
         p.category,
@@ -416,13 +341,8 @@ WHERE rn <= 3
 ORDER BY category, rn;
 
 
--- ----------------------------------------------------------------------------
--- Q5.2 - Impatto degli sconti per regione
--- Voglio capire quante revenue "perdo" per via degli sconti
--- e se ci sono regioni dove si sconta di più.
--- Il fatturato potenziale lo calcolo come: effettivo + sconti concessi,
--- cioè quello che avrei fatturato a listino pieno.
--- ----------------------------------------------------------------------------
+-- Q5.2 - Impatto sconti per regione
+-- Fatturato potenziale = effettivo + sconti concessi (listino pieno).
 SELECT
     cu.region,
     COUNT(s.sale_id)                            AS numero_ordini,
@@ -441,14 +361,9 @@ GROUP BY cu.region
 ORDER BY fatturato_effettivo DESC;
 
 
--- ----------------------------------------------------------------------------
--- Q5.3 - Media mobile a 3 mesi del fatturato
--- La media mobile serve a "lisciare" i picchi stagionali e vedere
--- il trend sottostante. Ho usato ROWS BETWEEN 2 PRECEDING AND CURRENT ROW
--- per definire una finestra di 3 righe (mese corrente + 2 precedenti).
--- Senza la clausola ROWS SQL Server userebbe RANGE, che può dare
--- risultati diversi in presenza di valori duplicati.
--- ----------------------------------------------------------------------------
+-- Q5.3 - Media mobile a 3 mesi
+-- ROWS BETWEEN 2 PRECEDING AND CURRENT ROW: riga corrente + 2 precedenti.
+-- Senza ROWS SQL Server usa RANGE di default, che può dare risultati diversi.
 WITH monthly_revenue AS (
     SELECT
         c.year                      AS anno,
@@ -474,14 +389,8 @@ FROM monthly_revenue
 ORDER BY anno, mese;
 
 
--- ----------------------------------------------------------------------------
--- Q5.4 - KPI executive sintetici
--- Ho usato UNION ALL per impilare verticalmente metriche diverse
--- in un unico result set. Questo formato è comodo per alimentare
--- le card KPI in Power BI senza dover fare trasformazioni aggiuntive.
--- Uso UNION ALL (non UNION) perché non ci sono duplicati da rimuovere
--- e UNION ALL è più veloce perché non fa il controllo dei duplicati.
--- ----------------------------------------------------------------------------
+-- Q5.4 - KPI sintetici con UNION ALL
+-- UNION ALL impila metriche diverse in un unico result set verticale.
 SELECT 'Fatturato Totale 2024'      AS kpi,
        ROUND(SUM(s.total_amount), 2) AS valore,
        '€'                           AS unita
