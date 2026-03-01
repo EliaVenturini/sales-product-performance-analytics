@@ -1,6 +1,6 @@
 # Sales & Product Performance Analytics
 
-Progetto personale di analisi delle vendite su un catalogo di prodotti gluten-free, costruito per fare pratica con SQL avanzato, modellazione dati e Power BI.
+Progetto personale di analisi delle vendite su un catalogo di prodotti, costruito per fare pratica con SQL avanzato, modellazione dati e Power BI.
 
 I dati dei prodotti sono reali e provengono dall'API di Open Food Facts (243 prodotti), mentre clienti e vendite sono simulati con Faker per creare un dataset B2B realistico (150 clienti, 5.000 transazioni 2023-2024).
 
