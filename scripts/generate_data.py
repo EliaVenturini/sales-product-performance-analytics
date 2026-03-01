@@ -1,6 +1,5 @@
 """
 =============================================================
-DR SCHAR - Sales & Product Performance Analytics
 Script 1: Data Generation
 =============================================================
 Questo script fa due cose:
@@ -31,11 +30,11 @@ print("=" * 60)
 # =============================================================
 # PARTE 1: PRODOTTI DA OPEN FOOD FACTS API
 # =============================================================
-print("\n[1/3] Scaricamento prodotti gluten-free da Open Food Facts...")
+print("\n[1/3] Scaricamento prodotti da Open Food Facts...")
 
 def get_gluten_free_products(n_pages=5):
     """
-    Scarica prodotti gluten-free dall'API Open Food Facts.
+    Scarica prodotti dall'API Open Food Facts.
     L'API è pubblica e gratuita, non serve autenticazione.
     Restituisce una lista di dizionari con i dati dei prodotti.
     """
