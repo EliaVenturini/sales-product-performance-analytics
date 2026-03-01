@@ -1,9 +1,5 @@
 # Sales & Product Performance Analytics
 
-![SQL Server](https://img.shields.io/badge/SQL%20Server-2025-CC2927?style=flat&logo=microsoftsqlserver&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3.13-3776AB?style=flat&logo=python&logoColor=white)
-![Power BI](https://img.shields.io/badge/Power%20BI-Dashboard-F2C811?style=flat&logo=powerbi&logoColor=black)
-
 Progetto personale di analisi delle vendite su un catalogo di prodotti gluten-free, costruito per fare pratica con SQL avanzato, modellazione dati e Power BI.
 
 I dati dei prodotti sono reali e provengono dall'API di Open Food Facts (243 prodotti), mentre clienti e vendite sono simulati con Faker per creare un dataset B2B realistico (150 clienti, 5.000 transazioni 2023-2024).
@@ -62,7 +58,3 @@ La dashboard è strutturata su 4 pagine: Executive Overview, Product Performance
 - [x] Query SQL avanzate
 - [ ] Dashboard Power BI
 - [ ] Pubblicazione su NovyPro
-
----
-
-**Elia Venturini** — [LinkedIn](#) · [GitHub](#)
