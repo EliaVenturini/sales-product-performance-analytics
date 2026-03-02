@@ -51,10 +51,4 @@ La dashboard è strutturata su 4 pagine: Executive Overview, Product Performance
 
 ---
 
-## Roadmap
 
-- [x] Generazione dataset
-- [x] Caricamento su SQL Server
-- [x] Query SQL avanzate
-- [ ] Dashboard Power BI
-- [ ] Pubblicazione su NovyPro
