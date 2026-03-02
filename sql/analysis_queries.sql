@@ -1,62 +1,53 @@
 -- =============================================================================
 -- analysis_queries.sql
 -- Progetto: Sales & Product Performance Analytics
---
--- Query SQL su database DrScharAnalytics.
--- Strutturate in 5 sezioni: Revenue, Time Intelligence, Product Performance,
--- Customer Segmentation (RFM), Advanced Analytics.
 -- =============================================================================
 
-USE DrScharAnalytics;
+use DrScharAnalytics;
 
 -- =============================================================================
 -- SEZIONE 1: REVENUE ANALYSIS
 -- =============================================================================
 
 -- Q1.1 - Fatturato totale per anno
-SELECT
-    YEAR(s.sale_date) AS anno,
-    COUNT(s.sale_id) AS numero_ordini,
-    SUM(s.total_amount) AS fatturato_totale,
-    AVG(s.total_amount) AS valore_medio_ordine,
-    SUM(s.quantity) AS unita_vendute
-FROM Sales s
-GROUP BY YEAR(s.sale_date)
-ORDER BY anno;
+select
+	year(s.sale_date) Anno,
+	count(s.sale_id) Numero_ordini,
+	sum(s.total_amount) Fatturato_totale,
+	avg(s.total_amount) Valore_medio_ordine,
+	sum(s.quantity) Unita_vendute
+from Sales s
+group by year(s.sale_date)
+order by Anno;
 
 
 -- Q1.2 - Ranking prodotti per fatturato
 -- RANK() assegna lo stesso rango a prodotti con fatturato uguale (1,2,2,4).
-SELECT
-    p.product_name,
-    p.category,
-    p.brand,
-    SUM(s.total_amount) AS fatturato_totale,
-    SUM(s.quantity) AS unita_vendute,
-    RANK() OVER (
-        ORDER BY SUM(s.total_amount) DESC
-    ) AS rank_fatturato
-FROM Sales s
-JOIN Products p ON s.product_id = p.product_id
-GROUP BY p.product_name, p.category, p.brand
-ORDER BY rank_fatturato;
+select
+	p.product_name, p.category, p.brand,
+	sum(s.total_amount) Fatturato_totale,
+	sum(s.quantity) Quantità_vendute,
+	rank() over(order by sum(s.total_amount) desc) Rank
+from Products p
+	join Sales s on p.product_id = s.product_id
+group by p.product_name, p.category, p.brand;
 
 
 -- Q1.3 - Top 10 prodotti con percentuale sul totale
 -- SUM() OVER () senza PARTITION BY restituisce il totale generale,
 -- usato come denominatore per la percentuale senza subquery separata.
-SELECT TOP 10
-    p.product_name,
-    p.category,
-    SUM(s.total_amount) AS fatturato_prodotto,
-    ROUND(
-        SUM(s.total_amount) * 100.0 /
-        SUM(SUM(s.total_amount)) OVER ()
-    , 2) AS perc_sul_totale
-FROM Sales s
-JOIN Products p ON s.product_id = p.product_id
-GROUP BY p.product_name, p.category
-ORDER BY fatturato_prodotto DESC;
+select top 10
+	p.product_name,
+	p.category,
+	sum(s.total_amount) Fatturato_prodotto,
+	round(
+		sum(s.total_amount) * 100.0 /
+		sum(sum(s.total_amount)) over()
+	, 2) Perc_sul_totale
+from Sales s
+	join Products p on s.product_id = p.product_id
+group by p.product_name, p.category
+order by Fatturato_prodotto desc;
 
 
 -- =============================================================================
@@ -66,88 +57,86 @@ ORDER BY fatturato_prodotto DESC;
 -- Q2.1 - Fatturato mensile con confronto mese precedente
 -- LAG() accede al valore del mese precedente senza self-join.
 -- NULLIF al denominatore evita la divisione per zero.
-WITH monthly_revenue AS (
-    SELECT
-        c.year AS anno,
-        c.month AS mese,
-        c.month_name AS nome_mese,
-        SUM(s.total_amount) AS fatturato_mensile
-    FROM Sales s
-    JOIN Calendar c ON s.sale_date = c.full_date
-    GROUP BY c.year, c.month, c.month_name
+with monthly_revenue as (
+	select
+		c.year Anno,
+		c.month Mese,
+		c.month_name Nome_mese,
+		sum(s.total_amount) Fatturato_mensile
+	from Sales s
+		join Calendar c on s.sale_date = c.full_date
+	group by c.year, c.month, c.month_name
 )
-SELECT
-    anno,
-    mese,
-    nome_mese,
-    fatturato_mensile,
-    LAG(fatturato_mensile, 1) OVER (
-        ORDER BY anno, mese
-    ) AS fatturato_mese_precedente,
-    ROUND(
-        (fatturato_mensile - LAG(fatturato_mensile, 1) OVER (ORDER BY anno, mese))
-        * 100.0
-        / NULLIF(LAG(fatturato_mensile, 1) OVER (ORDER BY anno, mese), 0)
-    , 2) AS variazione_pct_mom
-FROM monthly_revenue
-ORDER BY anno, mese;
+select
+	Anno,
+	Mese,
+	Nome_mese,
+	Fatturato_mensile,
+	lag(Fatturato_mensile, 1) over(order by Anno, Mese) Fatturato_mese_precedente,
+	round(
+		(Fatturato_mensile - lag(Fatturato_mensile, 1) over(order by Anno, Mese))
+		* 100.0
+		/ nullif(lag(Fatturato_mensile, 1) over(order by Anno, Mese), 0)
+	, 2) Variazione_pct_mom
+from monthly_revenue
+order by Anno, Mese;
 
 
 -- Q2.2 - Fatturato cumulativo per mese
 -- PARTITION BY anno fa ripartire il totale da zero ogni anno.
 -- ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW definisce
 -- la finestra dalla prima riga fino a quella corrente.
-WITH monthly_revenue AS (
-    SELECT
-        c.year AS anno,
-        c.month AS mese,
-        c.month_name AS nome_mese,
-        SUM(s.total_amount) AS fatturato_mensile
-    FROM Sales s
-    JOIN Calendar c ON s.sale_date = c.full_date
-    GROUP BY c.year, c.month, c.month_name
+with monthly_revenue as (
+	select
+		c.year Anno,
+		c.month Mese,
+		c.month_name Nome_mese,
+		sum(s.total_amount) Fatturato_mensile
+	from Sales s
+		join Calendar c on s.sale_date = c.full_date
+	group by c.year, c.month, c.month_name
 )
-SELECT
-    anno,
-    mese,
-    nome_mese,
-    fatturato_mensile,
-    SUM(fatturato_mensile) OVER (
-        PARTITION BY anno
-        ORDER BY mese
-        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-    ) AS fatturato_cumulativo_ytd
-FROM monthly_revenue
-ORDER BY anno, mese;
+select
+	Anno,
+	Mese,
+	Nome_mese,
+	Fatturato_mensile,
+	sum(Fatturato_mensile) over(
+		partition by Anno
+		order by Mese
+		rows between unbounded preceding and current row
+	) Fatturato_cumulativo_ytd
+from monthly_revenue
+order by Anno, Mese;
 
 
 -- Q2.3 - Confronto anno su anno per trimestre
 -- Pivot manuale con CASE WHEN: estrae il valore per anno specifico,
 -- somma zero per gli altri, poi GROUP BY trimestre collassa tutto.
-WITH quarterly_revenue AS (
-    SELECT
-        c.year AS anno,
-        c.quarter AS trimestre,
-        SUM(s.total_amount) AS fatturato
-    FROM Sales s
-    JOIN Calendar c ON s.sale_date = c.full_date
-    GROUP BY c.year, c.quarter
+with quarterly_revenue as (
+	select
+		c.year Anno,
+		c.quarter Trimestre,
+		sum(s.total_amount) Fatturato
+	from Sales s
+		join Calendar c on s.sale_date = c.full_date
+	group by c.year, c.quarter
 )
-SELECT
-    trimestre,
-    SUM(CASE WHEN anno = 2023 THEN fatturato ELSE 0 END) AS fatturato_2023,
-    SUM(CASE WHEN anno = 2024 THEN fatturato ELSE 0 END) AS fatturato_2024,
-    SUM(CASE WHEN anno = 2024 THEN fatturato ELSE 0 END) -
-    SUM(CASE WHEN anno = 2023 THEN fatturato ELSE 0 END)  AS variazione_assoluta,
-    ROUND(
-        (SUM(CASE WHEN anno = 2024 THEN fatturato ELSE 0 END) -
-         SUM(CASE WHEN anno = 2023 THEN fatturato ELSE 0 END))
-        * 100.0
-        / NULLIF(SUM(CASE WHEN anno = 2023 THEN fatturato ELSE 0 END), 0)
-    , 2)   AS variazione_pct_yoy
-FROM quarterly_revenue
-GROUP BY trimestre
-ORDER BY trimestre;
+select
+	Trimestre,
+	sum(case when Anno = 2023 then Fatturato else 0 end) Fatturato_2023,
+	sum(case when Anno = 2024 then Fatturato else 0 end) Fatturato_2024,
+	sum(case when Anno = 2024 then Fatturato else 0 end) -
+	sum(case when Anno = 2023 then Fatturato else 0 end) Variazione_assoluta,
+	round(
+		(sum(case when Anno = 2024 then Fatturato else 0 end) -
+		 sum(case when Anno = 2023 then Fatturato else 0 end))
+		* 100.0
+		/ nullif(sum(case when Anno = 2023 then Fatturato else 0 end), 0)
+	, 2) Variazione_pct_yoy
+from quarterly_revenue
+group by Trimestre
+order by Trimestre;
 
 
 -- =============================================================================
@@ -156,53 +145,53 @@ ORDER BY trimestre;
 
 -- Q3.1 - Ranking per categoria
 -- PARTITION BY category genera un ranking separato per ogni categoria.
-SELECT
-    p.category,
-    p.product_name,
-    p.brand,
-    COUNT(s.sale_id) AS numero_ordini,
-    SUM(s.total_amount) AS fatturato,
-    AVG(s.discount_pct) AS sconto_medio_pct,
-    RANK() OVER (
-        PARTITION BY p.category
-        ORDER BY SUM(s.total_amount) DESC
-    )  AS rank_in_categoria
-FROM Sales s
-JOIN Products p ON s.product_id = p.product_id
-GROUP BY p.category, p.product_name, p.brand
-ORDER BY p.category, rank_in_categoria;
+select
+	p.category,
+	p.product_name,
+	p.brand,
+	count(s.sale_id) Numero_ordini,
+	sum(s.total_amount) Fatturato,
+	avg(s.discount_pct) Sconto_medio_pct,
+	rank() over(
+		partition by p.category
+		order by sum(s.total_amount) desc
+	) Rank_in_categoria
+from Sales s
+	join Products p on s.product_id = p.product_id
+group by p.category, p.product_name, p.brand
+order by p.category, Rank_in_categoria;
 
 
 -- Q3.2 - Organico vs convenzionale
 -- LEFT JOIN per includere anche i prodotti senza vendite nel conteggio.
 -- CASE WHEN converte il flag is_organic (0/1) in testo leggibile.
-SELECT
-    CASE WHEN p.is_organic = 1 THEN 'Organico' ELSE 'Convenzionale' END   AS tipo_prodotto,
-    COUNT(DISTINCT p.product_id) AS numero_prodotti,
-    COUNT(s.sale_id)   AS numero_vendite,
-    SUM(s.total_amount)  AS fatturato_totale,
-    AVG(s.total_amount) AS valore_medio_ordine,
-    AVG(p.unit_price) AS prezzo_medio_listino,
-    AVG(s.discount_pct)  AS sconto_medio_pct
-FROM Products p
-LEFT JOIN Sales s ON p.product_id = s.product_id
-GROUP BY p.is_organic
-ORDER BY fatturato_totale DESC;
+select
+	case when p.is_organic = 1 then 'Organico' else 'Convenzionale' end Tipo_prodotto,
+	count(distinct p.product_id) Numero_prodotti,
+	count(s.sale_id) Numero_vendite,
+	sum(s.total_amount) Fatturato_totale,
+	avg(s.total_amount) Valore_medio_ordine,
+	avg(p.unit_price) Prezzo_medio_listino,
+	avg(s.discount_pct) Sconto_medio_pct
+from Products p
+	left join Sales s on p.product_id = s.product_id
+group by p.is_organic
+order by Fatturato_totale desc;
 
 
 -- Q3.3 - Prodotti senza vendite
 -- LEFT JOIN + WHERE IS NULL per trovare prodotti mai venduti.
-SELECT
-    p.product_id,
-    p.product_name,
-    p.brand,
-    p.category,
-    p.unit_price,
-    p.launch_date
-FROM Products p
-LEFT JOIN Sales s ON p.product_id = s.product_id
-WHERE s.sale_id IS NULL
-ORDER BY p.category, p.product_name;
+select
+	p.product_id,
+	p.product_name,
+	p.brand,
+	p.category,
+	p.unit_price,
+	p.launch_date
+from Products p
+	left join Sales s on p.product_id = s.product_id
+where s.sale_id is null
+order by p.category, p.product_name;
 
 
 -- =============================================================================
@@ -213,99 +202,98 @@ ORDER BY p.category, p.product_name;
 -- Due CTE: la prima calcola le metriche grezze, la seconda assegna
 -- i punteggi con NTILE(4) che divide i clienti in 4 gruppi uguali.
 -- Recency è ordinata ASC perché meno giorni = cliente più recente = meglio.
-WITH rfm_base AS (
-    SELECT
-        c.customer_id,
-        c.customer_name,
-        c.customer_type,
-        c.region,
-        DATEDIFF(DAY, MAX(s.sale_date), '2024-12-31') AS recency_giorni,
-        COUNT(s.sale_id)  AS frequency,
-        SUM(s.total_amount) AS monetary
-    FROM Customers c
-    JOIN Sales s ON c.customer_id = s.customer_id
-    GROUP BY c.customer_id, c.customer_name, c.customer_type, c.region
+with rfm_base as (
+	select
+		c.customer_id,
+		c.customer_name,
+		c.customer_type,
+		c.region,
+		datediff(day, max(s.sale_date), '2024-12-31') Recency_giorni,
+		count(s.sale_id) Frequency,
+		sum(s.total_amount) Monetary
+	from Customers c
+		join Sales s on c.customer_id = s.customer_id
+	group by c.customer_id, c.customer_name, c.customer_type, c.region
 ),
-rfm_scores AS (
-    SELECT
-        customer_id,
-        customer_name,
-        customer_type,
-        region,
-        recency_giorni,
-        frequency,
-        monetary,
-        NTILE(4) OVER (ORDER BY recency_giorni ASC) AS r_score,
-        NTILE(4) OVER (ORDER BY frequency DESC)  AS f_score,
-        NTILE(4) OVER (ORDER BY monetary DESC) AS m_score
-    FROM rfm_base
+rfm_scores as (
+	select
+		customer_id,
+		customer_name,
+		customer_type,
+		region,
+		Recency_giorni,
+		Frequency,
+		Monetary,
+		ntile(4) over(order by Recency_giorni asc) R_score,
+		ntile(4) over(order by Frequency desc) F_score,
+		ntile(4) over(order by Monetary desc) M_score
+	from rfm_base
 )
-SELECT
-    customer_id,
-    customer_name,
-    customer_type,
-    region,
-    recency_giorni,
-    frequency,
-    ROUND(monetary, 2) AS monetary,
-    r_score,
-    f_score,
-    m_score,
-    (r_score + f_score + m_score)   AS rfm_score_totale,
-    CASE
-        WHEN (r_score + f_score + m_score) >= 10 THEN 'Champions'
-        WHEN (r_score + f_score + m_score) >= 8  THEN 'Loyal Customers'
-        WHEN (r_score + f_score + m_score) >= 6  THEN 'Potential Loyalists'
-        WHEN (r_score + f_score + m_score) >= 4  THEN 'At Risk'
-        ELSE   'Lost'
-    END  AS segmento_cliente
-FROM rfm_scores
-ORDER BY rfm_score_totale DESC;
+select
+	customer_id,
+	customer_name,
+	customer_type,
+	region,
+	Recency_giorni,
+	Frequency,
+	round(Monetary, 2) Monetary,
+	R_score,
+	F_score,
+	M_score,
+	(R_score + F_score + M_score) Rfm_score_totale,
+	case
+		when (R_score + F_score + M_score) >= 10 then 'Champions'
+		when (R_score + F_score + M_score) >= 8  then 'Loyal Customers'
+		when (R_score + F_score + M_score) >= 6  then 'Potential Loyalists'
+		when (R_score + F_score + M_score) >= 4  then 'At Risk'
+		else                                          'Lost'
+	end Segmento_cliente
+from rfm_scores
+order by Rfm_score_totale desc;
 
 
 -- Q4.2 - Distribuzione clienti per segmento
-WITH rfm_base AS (
-    SELECT
-        c.customer_id,
-        DATEDIFF(DAY, MAX(s.sale_date), '2024-12-31') AS recency_giorni,
-        COUNT(s.sale_id)   AS frequency,
-        SUM(s.total_amount)   AS monetary
-    FROM Customers c
-    JOIN Sales s ON c.customer_id = s.customer_id
-    GROUP BY c.customer_id
+with rfm_base as (
+	select
+		c.customer_id,
+		datediff(day, max(s.sale_date), '2024-12-31') Recency_giorni,
+		count(s.sale_id) Frequency,
+		sum(s.total_amount) Monetary
+	from Customers c
+		join Sales s on c.customer_id = s.customer_id
+	group by c.customer_id
 ),
-rfm_scores AS (
-    SELECT
-        customer_id,
-        NTILE(4) OVER (ORDER BY recency_giorni ASC) AS r_score,
-        NTILE(4) OVER (ORDER BY frequency DESC)  AS f_score,
-        NTILE(4) OVER (ORDER BY monetary DESC) AS m_score,
-        monetary
-    FROM rfm_base
+rfm_scores as (
+	select
+		customer_id,
+		ntile(4) over(order by Recency_giorni asc) R_score,
+		ntile(4) over(order by Frequency desc) F_score,
+		ntile(4) over(order by Monetary desc) M_score,
+		Monetary
+	from rfm_base
 ),
-rfm_segmented AS (
-    SELECT
-        customer_id,
-        ROUND(monetary, 2) AS monetary,
-        CASE
-            WHEN (r_score + f_score + m_score) >= 10 THEN 'Champions'
-            WHEN (r_score + f_score + m_score) >= 8  THEN 'Loyal Customers'
-            WHEN (r_score + f_score + m_score) >= 6  THEN 'Potential Loyalists'
-            WHEN (r_score + f_score + m_score) >= 4  THEN 'At Risk'
-            ELSE                                           'Lost'
-        END AS segmento_cliente
-    FROM rfm_scores
+rfm_segmented as (
+	select
+		customer_id,
+		round(Monetary, 2) Monetary,
+		case
+			when (R_score + F_score + M_score) >= 10 then 'Champions'
+			when (R_score + F_score + M_score) >= 8  then 'Loyal Customers'
+			when (R_score + F_score + M_score) >= 6  then 'Potential Loyalists'
+			when (R_score + F_score + M_score) >= 4  then 'At Risk'
+			else                                          'Lost'
+		end Segmento_cliente
+	from rfm_scores
 )
-SELECT
-    segmento_cliente,
-    COUNT(customer_id)              AS numero_clienti,
-    ROUND(AVG(monetary), 2)         AS fatturato_medio,
-    ROUND(SUM(monetary), 2)         AS fatturato_totale,
-    ROUND(COUNT(customer_id) * 100.0 / SUM(COUNT(customer_id)) OVER (), 1)
-                                    AS perc_clienti
-FROM rfm_segmented
-GROUP BY segmento_cliente
-ORDER BY fatturato_totale DESC;
+select
+	Segmento_cliente,
+	count(customer_id) Numero_clienti,
+	round(avg(Monetary), 2) Fatturato_medio,
+	round(sum(Monetary), 2) Fatturato_totale,
+	round(count(customer_id) * 100.0 / sum(count(customer_id)) over(), 1) Perc_clienti
+from rfm_segmented
+group by Segmento_cliente
+order by Fatturato_totale desc;
 
 
 -- =============================================================================
@@ -315,110 +303,109 @@ ORDER BY fatturato_totale DESC;
 -- Q5.1 - Top 3 prodotti per categoria
 -- ROW_NUMBER() garantisce esattamente 3 righe per categoria.
 -- Con RANK() in caso di parità potrebbero essere di più.
-WITH product_revenue AS (
-    SELECT
-        p.category,
-        p.product_name,
-        p.brand,
-        SUM(s.total_amount)  AS fatturato,
-        ROW_NUMBER() OVER (
-            PARTITION BY p.category
-            ORDER BY SUM(s.total_amount) DESC
-        ) AS rn
-    FROM Sales s
-    JOIN Products p ON s.product_id = p.product_id
-    GROUP BY p.category, p.product_name, p.brand
+with product_revenue as (
+	select
+		p.category,
+		p.product_name,
+		p.brand,
+		sum(s.total_amount) Fatturato,
+		row_number() over(
+			partition by p.category
+			order by sum(s.total_amount) desc
+		) Rn
+	from Sales s
+		join Products p on s.product_id = p.product_id
+	group by p.category, p.product_name, p.brand
 )
-SELECT
-    category,
-    product_name,
-    brand,
-    ROUND(fatturato, 2) AS fatturato,
-    rn  AS posizione_in_categoria
-FROM product_revenue
-WHERE rn <= 3
-ORDER BY category, rn;
+select
+	category,
+	product_name,
+	brand,
+	round(Fatturato, 2) Fatturato,
+	Rn Posizione_in_categoria
+from product_revenue
+where Rn <= 3
+order by category, Rn;
 
 
 -- Q5.2 - Impatto sconti per regione
 -- Fatturato potenziale = effettivo + sconti concessi (listino pieno).
-SELECT
-    cu.region,
-    COUNT(s.sale_id)  AS numero_ordini,
-    ROUND(SUM(s.total_amount), 2) AS fatturato_effettivo,
-    ROUND(SUM(s.discount_amount), 2) As totale_sconti_concessi,
-    ROUND(SUM(s.total_amount) + SUM(s.discount_amount), 2)
-                                                AS fatturato_potenziale,
-    ROUND(
-        SUM(s.discount_amount) * 100.0 /
-        NULLIF(SUM(s.total_amount) + SUM(s.discount_amount), 0)
-    , 2)  AS perc_fatturato_perso,
-    ROUND(AVG(s.discount_pct), 2) AS sconto_medio_pct
-FROM Sales s
-JOIN Customers cu ON s.customer_id = cu.customer_id
-GROUP BY cu.region
-ORDER BY fatturato_effettivo DESC;
+select
+	cu.region,
+	count(s.sale_id) Numero_ordini,
+	round(sum(s.total_amount), 2) Fatturato_effettivo,
+	round(sum(s.discount_amount), 2) Totale_sconti_concessi,
+	round(sum(s.total_amount) + sum(s.discount_amount), 2) Fatturato_potenziale,
+	round(
+		sum(s.discount_amount) * 100.0 /
+		nullif(sum(s.total_amount) + sum(s.discount_amount), 0)
+	, 2) Perc_fatturato_perso,
+	round(avg(s.discount_pct), 2) Sconto_medio_pct
+from Sales s
+	join Customers cu on s.customer_id = cu.customer_id
+group by cu.region
+order by Fatturato_effettivo desc;
 
 
 -- Q5.3 - Media mobile a 3 mesi
 -- ROWS BETWEEN 2 PRECEDING AND CURRENT ROW: riga corrente + 2 precedenti.
 -- Senza ROWS SQL Server usa RANGE di default, che può dare risultati diversi.
-WITH monthly_revenue AS (
-    SELECT
-        c.year AS anno,
-        c.month AS mese,
-        c.month_name AS nome_mese,
-        SUM(s.total_amount) AS fatturato_mensile
-    FROM Sales s
-    JOIN Calendar c ON s.sale_date = c.full_date
-    GROUP BY c.year, c.month, c.month_name
+with monthly_revenue as (
+	select
+		c.year Anno,
+		c.month Mese,
+		c.month_name Nome_mese,
+		sum(s.total_amount) Fatturato_mensile
+	from Sales s
+		join Calendar c on s.sale_date = c.full_date
+	group by c.year, c.month, c.month_name
 )
-SELECT
-    anno,
-    mese,
-    nome_mese,
-    ROUND(fatturato_mensile, 2) AS fatturato_mensile,
-    ROUND(
-        AVG(fatturato_mensile) OVER (
-            ORDER BY anno, mese
-            ROWS BETWEEN 2 PRECEDING AND CURRENT ROW
-        )
-    , 2) AS media_mobile_3m
-FROM monthly_revenue
-ORDER BY anno, mese;
+select
+	Anno,
+	Mese,
+	Nome_mese,
+	round(Fatturato_mensile, 2) Fatturato_mensile,
+	round(
+		avg(Fatturato_mensile) over(
+			order by Anno, Mese
+			rows between 2 preceding and current row
+		)
+	, 2) Media_mobile_3m
+from monthly_revenue
+order by Anno, Mese;
 
 
 -- Q5.4 - KPI sintetici con UNION ALL
 -- UNION ALL impila metriche diverse in un unico result set verticale.
-SELECT 'Fatturato Totale 2024'  AS kpi,
-       ROUND(SUM(s.total_amount), 2) AS valore,
-       '€' AS unita
-FROM Sales s WHERE YEAR(s.sale_date) = 2024
+select 'Fatturato Totale 2024' Kpi,
+	round(sum(s.total_amount), 2) Valore,
+	'€' Unita
+from Sales s where year(s.sale_date) = 2024
 
-UNION ALL
+union all
 
-SELECT 'Ordini Totali 2024',
-       COUNT(s.sale_id),
-       'n.'
-FROM Sales s WHERE YEAR(s.sale_date) = 2024
+select 'Ordini Totali 2024',
+	count(s.sale_id),
+	'n.'
+from Sales s where year(s.sale_date) = 2024
 
-UNION ALL
+union all
 
-SELECT 'Clienti Attivi 2024',
-       COUNT(DISTINCT s.customer_id),
-       'n.'
-FROM Sales s WHERE YEAR(s.sale_date) = 2024
+select 'Clienti Attivi 2024',
+	count(distinct s.customer_id),
+	'n.'
+from Sales s where year(s.sale_date) = 2024
 
-UNION ALL
+union all
 
-SELECT 'Sconto Medio 2024',
-       ROUND(AVG(s.discount_pct), 2),
-       '%'
-FROM Sales s WHERE YEAR(s.sale_date) = 2024
+select 'Sconto Medio 2024',
+	round(avg(s.discount_pct), 2),
+	'%'
+from Sales s where year(s.sale_date) = 2024
 
-UNION ALL
+union all
 
-SELECT 'Prodotti Venduti 2024',
-       COUNT(DISTINCT s.product_id),
-       'n.'
-FROM Sales s WHERE YEAR(s.sale_date) = 2024;
+select 'Prodotti Venduti 2024',
+	count(distinct s.product_id),
+	'n.'
+from Sales s where year(s.sale_date) = 2024;
