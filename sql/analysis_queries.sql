@@ -52,29 +52,29 @@ order by Fatturato_Prodotto desc
 -- Q2.1 - Fatturato mensile con confronto mese precedente
 -- LAG() accede al valore del mese precedente senza self-join.
 -- NULLIF al denominatore evita la divisione per zero.
-with monthly_revenue as (
-	select
-		c.year Anno,
-		c.month Mese,
-		c.month_name Nome_mese,
-		sum(s.total_amount) Fatturato_mensile
-	from Sales s
-		join Calendar c on s.sale_date = c.full_date
-	group by c.year, c.month, c.month_name
+
+use DrScharAnalytics;
+
+with total_by_month as(
+select 
+	year (sale_date) as Year, 
+	month (sale_date) as Month_number, 
+	month_name,
+	sum (total_amount) as Fatturato_mensile
+from Sales
+join Calendar on sale_date = full_date
+group by year (sale_date), month (sale_date), month_name
 )
-select
-	Anno,
-	Mese,
-	Nome_mese,
-	Fatturato_mensile,
-	lag(Fatturato_mensile, 1) over(order by Anno, Mese) Fatturato_mese_precedente,
-	round(
-		(Fatturato_mensile - lag(Fatturato_mensile, 1) over(order by Anno, Mese))
-		* 100.0
-		/ nullif(lag(Fatturato_mensile, 1) over(order by Anno, Mese), 0)
-	, 2) Variazione_pct_mom
-from monthly_revenue
-order by Anno, Mese;
+
+select 
+Year,
+month_name, 
+Fatturato_mensile, 
+lag(Fatturato_mensile, 1) over (order by Year, Month_number) Fatturato_mese_precedente,
+round((Fatturato_mensile - lag(Fatturato_mensile, 1) over (order by Year, Month_number))/
+nullif(lag(Fatturato_mensile, 1) over (order by Year, Month_number),0)*100,2) Variazione_perc_MoM
+from total_by_month
+order by Year, Month_number
 
 
 -- Q2.2 - Fatturato cumulativo per mese
