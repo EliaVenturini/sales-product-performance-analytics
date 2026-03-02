@@ -32,18 +32,19 @@ group by p.product_name, p.category, p.brand;
 -- Q1.3 - Top 10 prodotti con percentuale sul totale
 -- SUM() OVER () senza PARTITION BY restituisce il totale generale,
 -- usato come denominatore per la percentuale senza subquery separata.
-select top 10
-	p.product_name,
-	p.category,
-	sum(s.total_amount) Fatturato_prodotto,
-	round(
-		sum(s.total_amount) * 100.0 /
-		sum(sum(s.total_amount)) over()
-	, 2) Perc_sul_totale
-from Sales s
-	join Products p on s.product_id = p.product_id
+select 
+top 10
+	p.product_name, 
+	p.category, 
+	sum(s.total_amount) as Fatturato_Prodotto, 
+	-- sum(sum(s.total_amount)) over () as totale_fatturato,
+	Round(sum(s.total_amount)/sum(sum(s.total_amount)) over () * 100,2) as Percentuale_Sul_Totale
+	-- il 2 indica l'arrotondamento della cifra percentuale
+from Products p
+	join Sales s on p.product_id = s.product_id
 group by p.product_name, p.category
-order by Fatturato_prodotto desc;
+having p.product_name not in ('?????')
+order by Fatturato_Prodotto desc
 
 
 -- SEZIONE 2: TIME INTELLIGENCE
