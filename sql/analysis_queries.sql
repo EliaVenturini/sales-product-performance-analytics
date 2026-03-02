@@ -1,13 +1,9 @@
--- =============================================================================
 -- analysis_queries.sql
 -- Progetto: Sales & Product Performance Analytics
--- =============================================================================
 
 use DrScharAnalytics;
 
--- =============================================================================
 -- SEZIONE 1: REVENUE ANALYSIS
--- =============================================================================
 
 -- Q1.1 - Fatturato totale per anno
 select
@@ -50,9 +46,7 @@ group by p.product_name, p.category
 order by Fatturato_prodotto desc;
 
 
--- =============================================================================
 -- SEZIONE 2: TIME INTELLIGENCE
--- =============================================================================
 
 -- Q2.1 - Fatturato mensile con confronto mese precedente
 -- LAG() accede al valore del mese precedente senza self-join.
@@ -138,10 +132,7 @@ from quarterly_revenue
 group by Trimestre
 order by Trimestre;
 
-
--- =============================================================================
 -- SEZIONE 3: PRODUCT PERFORMANCE
--- =============================================================================
 
 -- Q3.1 - Ranking per categoria
 -- PARTITION BY category genera un ranking separato per ogni categoria.
@@ -193,10 +184,7 @@ from Products p
 where s.sale_id is null
 order by p.category, p.product_name;
 
-
--- =============================================================================
 -- SEZIONE 4: CUSTOMER SEGMENTATION - RFM
--- =============================================================================
 
 -- Q4.1 - Segmentazione RFM per cliente
 -- Due CTE: la prima calcola le metriche grezze, la seconda assegna
@@ -295,11 +283,7 @@ from rfm_segmented
 group by Segmento_cliente
 order by Fatturato_totale desc;
 
-
--- =============================================================================
 -- SEZIONE 5: ADVANCED ANALYTICS
--- =============================================================================
-
 -- Q5.1 - Top 3 prodotti per categoria
 -- ROW_NUMBER() garantisce esattamente 3 righe per categoria.
 -- Con RANK() in caso di parità potrebbero essere di più.
