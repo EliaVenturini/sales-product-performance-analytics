@@ -47,7 +47,7 @@ Le 12 query in `sql/analysis_queries.sql` sono organizzate in 5 sezioni:
 
 ## Dashboard Power BI *(in sviluppo)*
 
-La dashboard è strutturata su 4 pagine: Executive Overview, Product Performance, Customer Analysis e una pagina di dettaglio prodotto con drill-through. Verrà pubblicata su NovyPro al completamento.
+La dashboard è strutturata su 4 pagine: Executive Overview, Product Performance, Customer Analysis e una pagina di dettaglio prodotto con drill-through.
 
 ---
 
