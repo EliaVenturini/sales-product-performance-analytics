@@ -45,16 +45,19 @@ Le 12 query in `sql/analysis_queries.sql` sono organizzate in 5 sezioni:
 
 ---
 
-## Dashboard Power BI *(in sviluppo)*
-
 ## Dashboard Power BI
-La dashboard è strutturata su 4 pagine:
-- **Page 1 — Executive Overview**  completata (KPI cards, trend mensile 2023 vs 2024, confronto YoY trimestrale, fatturato per regione e categoria, tabella riepilogo annuale)
-- **Page 2 — Product Performance**  completata (ranking prodotti con bookmark Top 10/Tutti, treemap per categoria, matrice categoria × anno, slicer anno)
-- **Page 3 — Customer Analysis**  in sviluppo
-- **Page 4 — Dettaglio Prodotto**  in sviluppo (drill-through)
 
-Verrà pubblicata su NovyPro al completamento.
+### Page 1 — Executive Overview
+KPI principali (Fatturato Totale, Numero Ordini, Clienti Attivi, Valore Medio Ordine, Sconto Medio %), trend mensile 2023 vs 2024, confronto YoY trimestrale, fatturato per regione e categoria, tabella riepilogo annuale.
+
+### Page 2 — Product Performance
+Ranking prodotti con bookmark **Top 10 / Mostra Tutti**, treemap fatturato per categoria, matrice categoria × anno con quota percentuale, slicer anno.
+
+### Page 3 — Customer Analysis
+Top clienti per fatturato, fatturato per regione, trend acquisti e nuovi clienti nel tempo, slicer anno.
+
+### Page 4 — Dettaglio Prodotto (Drill-through)
+Pagina di dettaglio raggiungibile tramite drill-through dalla Pagina 2. Mostra KPI del singolo prodotto, trend mensile 2023 vs 2024, confronto vs media categoria, top 5 clienti, tabella ordini dettagliata.
 
 ---
 
